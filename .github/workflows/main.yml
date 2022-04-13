@@ -29,11 +29,21 @@ jobs:
           #git notes add main TODO
         done
 
+        # Configure GitHub Actions service account Git identity
+        git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git config --global user.name "github-actions[bot]"
+
         # Store the GitHub Issues in a Git note associated to the main branch
         git notes add main -m "$JSON"
 
+        # Configure the GitHub remote for the Git repository
+        git remote set-url origin https://:${{github.token}}@github.com/${{github.repository}}
+
         # Print Git status to see if the new note shows up as a change
         git status
+
+        # Push the changes to the Git notes back to the GitHub repository
+        #git push
     - name: List Git notes
       run: git notes list
     - name: Show Git notes
