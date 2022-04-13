@@ -1,23 +1,18 @@
 # GitHub Issues Git Notes
 
-In this repository, I am going to prototype a script (or maybe a GitHub Actions
-action) which takes the GitHub issues associated with the GitHub repository and
-stores them in Git Notes of the Git repository.
-
-This way, one can build automation and systems based on GitHub issues without
-worrying about portability, because the issues while stored separately from the
-repository by GitHub, will also by automatically backed up to Git Notes by this
-script / GitHub Actions action on any `issues` workflow event.
+This repository contains a prototype GitHub Actions workflow that takes the
+GitHub Issues associated with the repository (but backed by the GitHub database
+and not the Git repository itself) and backs them up in the Git repository's
+[Git Notes](https://git-scm.com/docs/git-notes) every time the issues change.
 
 ## To-Do
 
-### Prototype the script
-
-Use the integration PAT to pull the issues from the GitHub API and store them in
-GitHub Notes. Use the Git client configured with the GitHub Actions service
-account Git identity to push the Git Notes back to the GitHub repository from
-the GitHub Actions workflow. Run on all events in the `issues` trigger scope.
+### Make the workflow script push the change back to the GitHub repository
 
 ### Consider a two-way sync / diff option where changes to Git Notes sync back
 
-This would be significantly more complex, but it could be useful, too.
+This would be significantly more complex, but it could be useful. However, all
+of the changes done outside of GitHub and transferred back to the GitHub Issues
+by the workflow would be authored by the GitHub Actions service account and not
+the pusher as the workflow, while cognizant of their Git identity, does not have
+the ability to impersonate them in order to effect these changes.
