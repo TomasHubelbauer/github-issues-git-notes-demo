@@ -12,7 +12,7 @@ jobs:
     - name: Check out the Git repository and its main branch (not detached HEAD)
       uses: actions/checkout@v3
       with:
-        ref: main
+        ref: [main, "refs/notes/*:refs/notes/*"]
         fetch-depth: 0
     - name: Fetch GitHub Issues and store them in Git notes
       run: |
