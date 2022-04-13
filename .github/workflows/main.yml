@@ -12,7 +12,7 @@ jobs:
     - name: Check out the Git repository and its main branch (not detached HEAD)
       uses: actions/checkout@v3
       with:
-        ref: [main, "refs/notes/*:refs/notes/*"]
+        ref: main
         fetch-depth: 0
     - name: Fetch GitHub Issues and store them in Git notes
       run: |
@@ -24,7 +24,7 @@ jobs:
         git config --global user.name "github-actions[bot]"
 
         # Pull existing notes so they are built upon not instead of for the push
-        git fetch origin "refs/notes/*:refs/notes/*"
+        #git fetch origin "refs/notes/*:refs/notes/*"
 
         # Store the GitHub Issues in a Git note associated to the main branch
         git notes add main -m "$(curl ${{github.api_url}}/repos/${{github.repository}}/issues -u :${{github.token}})"
