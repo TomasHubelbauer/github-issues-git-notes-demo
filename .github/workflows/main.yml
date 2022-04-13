@@ -30,7 +30,7 @@ jobs:
         git notes add main -m "$(curl ${{github.api_url}}/repos/${{github.repository}}/issues -u :${{github.token}})"
 
         # Print Git notes for each commit on main (like `git status` for notes)
-        git log --pretty=format:"%ai%n  ${{github.server_url}}/${{github.repository}}/commit/%h%n  %s%n  %N%n" --show-notes main
+        git log --pretty=format:"%ai ${{github.server_url}}/${{github.repository}}/commit/%h%n  %s%n  %N%n" --show-notes main
 
         # Configure the GitHub remote for the Git repository
         git remote set-url origin https://:${{github.token}}@github.com/${{github.repository}}
