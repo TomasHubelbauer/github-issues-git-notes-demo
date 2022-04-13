@@ -17,7 +17,7 @@ jobs:
         set -x
 
         # Fetch the GitHub Issues for this repository
-        JSON=curl ${{github.api_url}}/repos/${{github.repository}}/issues -u :${{github.token}}
+        JSON=$(curl ${{github.api_url}}/repos/${{github.repository}}/issues -u :${{github.token}})
 
         # Iterate the issues and print their number and title
         # TODO: See if it would make sense to add each issue as a separate note
