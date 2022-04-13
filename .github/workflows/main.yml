@@ -32,8 +32,5 @@ jobs:
         # Print Git notes for each commit on main (like `git status` for notes)
         git log --pretty=format:"%ai ${{github.server_url}}/${{github.repository}}/commit/%h %<(80,trunc)%s%n%N%n" --show-notes main
 
-        # Configure the GitHub remote for the Git repository
-        git remote set-url origin https://github.com/${{github.repository}}
-
         # Push the changes to the Git notes back to the GitHub repository
         git push origin refs/notes/*
