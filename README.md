@@ -24,10 +24,6 @@ To view notes for the `main` branch, run the Git `log` command with `%N` format:
 
 ## To-Do
 
-### Verify running twice for the same commit causes the note to update not fail
-
-It likely won't until I add `--force` to the `git notes add` command.
-
 ### Consider a two-way sync / diff option where changes to Git Notes sync back
 
 This would be significantly more complex, but it could be useful. However, all
