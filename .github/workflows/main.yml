@@ -9,8 +9,10 @@ jobs:
   main:
     runs-on: ubuntu-latest
     steps:
-    - name: Check out the Git repository
+    - name: Check out the Git repository and its main branch (not detached HEAD)
       uses: actions/checkout@v3
+      with:
+        ref: main
     - name: Fetch GitHub Issues and store them in Git notes
       run: |
         # Make the shell show commands as they are executed
