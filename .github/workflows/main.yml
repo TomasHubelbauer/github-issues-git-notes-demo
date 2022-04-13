@@ -14,7 +14,7 @@ jobs:
     - name: Fetch GitHub Issues
       run: |
         # Make the shell show commands as they are executed
-        -x
+        set -x
 
         # Fetch the GitHub Issues for this repository
         JSON=curl ${{github.api_url}}/repos/${{github.repositoru}}/issues -u :${{github.token}}
