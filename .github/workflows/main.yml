@@ -36,15 +36,11 @@ jobs:
         # Store the GitHub Issues in a Git note associated to the main branch
         git notes add main -m "$JSON"
 
+        # Print Git notes for each commit on main (like `git status` for notes)
+        git log --pretty=format:"%ai%n  ${{github.server_url}}/${{github.repository}}/commit/%h%n  %s%n  %N%n" --show-notes main
+
         # Configure the GitHub remote for the Git repository
         git remote set-url origin https://:${{github.token}}@github.com/${{github.repository}}
 
-        # Print Git status to see if the new note shows up as a change
-        git status
-
         # Push the changes to the Git notes back to the GitHub repository
-        #git push
-    - name: List Git notes
-      run: git notes list
-    - name: Show Git notes
-      run: git notes show
+        git push
