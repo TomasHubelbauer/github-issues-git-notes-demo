@@ -35,3 +35,8 @@ of the changes done outside of GitHub and transferred back to the GitHub Issues
 by the workflow would be authored by the GitHub Actions service account and not
 the pusher as the workflow, while cognizant of their Git identity, does not have
 the ability to impersonate them in order to effect these changes.
+
+### Figure out why force-pushing the notes is needed even on workflow-only edits
+
+I don't see why the remote would have work that has not been done locally. I
+think I might need to pull the notes first? I'll try that next.

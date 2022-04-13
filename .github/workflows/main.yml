@@ -30,4 +30,4 @@ jobs:
         git remote set-url origin https://:${{github.token}}@github.com/${{github.repository}}
 
         # Push the changes to the Git notes back to the GitHub repository
-        git push origin refs/notes/*
+        git push origin refs/notes/* --force
