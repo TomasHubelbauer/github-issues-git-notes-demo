@@ -24,7 +24,7 @@ jobs:
         git config --global user.name "github-actions[bot]"
 
         # Pull existing notes so they are built upon not instead of for the push
-        #git fetch origin "refs/notes/*:refs/notes/*"
+        git fetch origin "refs/notes/*:refs/notes/*"
 
         # Store the GitHub Issues in a Git note associated to the main branch
         git notes add main -m "$(curl ${{github.api_url}}/repos/${{github.repository}}/issues -u :${{github.token}})"
