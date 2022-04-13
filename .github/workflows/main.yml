@@ -11,10 +11,6 @@ jobs:
     steps:
     - name: Check out the Git repository
       uses: actions/checkout@v3
-    - name: List Git notes
-      run: git notes list
-    - name: Show Git notes
-      run: git notes show
     - name: Fetch GitHub Issues
       run: |
         # Make the shell show commands as they are executed
@@ -38,3 +34,7 @@ jobs:
 
         # Print Git status to see if the new note shows up as a change
         git status
+    - name: List Git notes
+      run: git notes list
+    - name: Show Git notes
+      run: git notes show
