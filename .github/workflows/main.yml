@@ -11,30 +11,17 @@ jobs:
     steps:
     - name: Check out the Git repository
       uses: actions/checkout@v3
-    - name: Fetch GitHub Issues
+    - name: Fetch GitHub Issues and store them in Git notes
       run: |
         # Make the shell show commands as they are executed
         set -x
-
-        # Fetch the GitHub Issues for this repository
-        JSON=$(curl ${{github.api_url}}/repos/${{github.repository}}/issues -u :${{github.token}})
-
-        # Iterate the issues and print their number and title
-        # TODO: See if it would make sense to add each issue as a separate note
-        for number in $(echo $JSON | jq '.[] .number'); do
-          echo $number
-          echo $JSON | jq --arg NUMBER $number '.[] | select(.number==$NUMBER) | .title'
-
-          # TODO: Come up with a good way to uniquely identity the issue notes
-          #git notes add main TODO
-        done
 
         # Configure GitHub Actions service account Git identity
         git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git config --global user.name "github-actions[bot]"
 
         # Store the GitHub Issues in a Git note associated to the main branch
-        git notes add main -m "$JSON"
+        git notes add main -m "$(curl ${{github.api_url}}/repos/${{github.repository}}/issues -u :${{github.token}})"
 
         # Print Git notes for each commit on main (like `git status` for notes)
         git log --pretty=format:"%ai%n  ${{github.server_url}}/${{github.repository}}/commit/%h%n  %s%n  %N%n" --show-notes main
