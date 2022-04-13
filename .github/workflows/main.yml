@@ -5,6 +5,8 @@ jobs:
   main:
     runs-on: ubuntu-latest
     steps:
+    - name: Check out the Git repository
+      uses: actions/checkout@v3
     - name: List Git notes
       run: git notes list
     - name: Show Git notes
