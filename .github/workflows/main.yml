@@ -20,6 +20,9 @@ jobs:
         git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git config --global user.name "github-actions[bot]"
 
+        # Pull existing notes so they are built upon not instead of for the push
+        git fetch origin "refs/notes/*:refs/notes/*"
+
         # Store the GitHub Issues in a Git note associated to the main branch
         git notes add main -m "$(curl ${{github.api_url}}/repos/${{github.repository}}/issues -u :${{github.token}})"
 
@@ -30,4 +33,4 @@ jobs:
         git remote set-url origin https://:${{github.token}}@github.com/${{github.repository}}
 
         # Push the changes to the Git notes back to the GitHub repository
-        git push origin refs/notes/* --force
+        git push origin refs/notes/*
