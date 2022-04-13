@@ -1,0 +1,34 @@
+name: main
+on: [issues, workflow_dispatch]
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+    - name: List Git notes
+      run: git notes list
+    - name: Show Git notes
+      run: git notes show
+    - name: Fetch GitHub Issues
+      run: |
+        # Make the shell show commands as they are executed
+        -x
+
+        # Fetch the GitHub Issues for this repository
+        JSON=curl ${{github.api_url}}/repos/${{github.repositoru}}/issues -u :${{github.token}}
+
+        # Iterate the issues and print their number and title
+        # TODO: See if it would make sense to add each issue as a separate note
+        for number in $(echo $JSON | jq '.[] .number'); do
+          echo $number
+          echo $JSON | jq --arg NUMBER $number '.[] | select(.number==$NUMBER) | .title'
+
+          # TODO: Come up with a good way to uniquely identity the issue notes
+          #git notes add main TODO
+        done
+
+        # Store the GitHub Issues in a Git note associated to the main branch
+        git notes add main -m "$JSON"
+
+        # Print Git status to see if the new note shows up as a change
+        git status
