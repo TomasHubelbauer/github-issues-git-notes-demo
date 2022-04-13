@@ -1,5 +1,9 @@
 name: main
-on: [issues, workflow_dispatch]
+on:
+  issues:
+  workflow_dispatch:
+  push:
+    paths: .github/workflows/main.yml
 
 jobs:
   main:
