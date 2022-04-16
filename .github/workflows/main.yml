@@ -16,3 +16,5 @@ jobs:
         fetch-depth: 0
     - name: Fetch GitHub Issues and store them in Git notes
       uses: tomashubelbauer/github-issues-git-notes@main
+    - name: Print the Git notes for verification
+      run: git log --pretty=format:"%ai%n %H%n %s%n %N%n" --show-notes main
