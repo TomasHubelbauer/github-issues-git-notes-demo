@@ -18,4 +18,6 @@ jobs:
         ref: main
         fetch-depth: 0
     - name: Print the Git notes for verification
-      run: git log --pretty=format:"%ai ${{github.server_url}}/${{github.repository}}/commit/%h %<(80,trunc)%s%n%N%n" --show-notes main
+      run: |
+        export TZ=UTC
+        git log --pretty=format:"%ai ${{github.server_url}}/${{github.repository}}/commit/%h %<(80,trunc)%s%n%N%n" --show-notes main
