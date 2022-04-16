@@ -1,6 +1,7 @@
 name: main
 on:
   issues:
+  issue_comment:
   workflow_dispatch:
   push:
     paths: .github/workflows/main.yml
