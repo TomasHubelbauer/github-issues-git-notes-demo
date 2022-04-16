@@ -19,4 +19,4 @@ jobs:
         fetch-depth: 0
     - name: Print the Git notes for verification
       run: |
-        git log --date=format:"%Y-%m-%d %H:%M:%S" --pretty=format:"%ai ${{github.server_url}}/${{github.repository}}/commit/%h %<(80,trunc)%s%n%N%n" --show-notes main
+        git log --date=format:"%Y-%m-%d %H:%M:%S" --pretty=format:"%ad ${{github.server_url}}/${{github.repository}}/commit/%h %<(80,trunc)%s%n%N%n" --show-notes main
